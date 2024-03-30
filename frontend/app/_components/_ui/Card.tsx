@@ -9,7 +9,7 @@ interface CardProps {
   image: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, summary, image }) => {
+const Card: React.FC<CardProps> = ({ activityType, title, summary, image }) => {
   console.log(image);
   return (
     <div className=" shadow-xl overflow-hidden">
@@ -20,6 +20,11 @@ const Card: React.FC<CardProps> = ({ title, summary, image }) => {
         height={350}
         className="rounded-t-lg object-cover"
       />
+      <div className="m-4 mt-5">
+        <span className="bg-red-300 text-white px-4 py-2 rounded-md">
+          {activityType}
+        </span>
+      </div>
       <div className="p-3">
         <h3 className="text-[17px] font-medium">{title}</h3>
       </div>

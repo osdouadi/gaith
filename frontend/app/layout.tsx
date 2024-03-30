@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
 import "./globals.css";
-import Header from "./_components/Header";
-import Footer from "./_components/Footer";
+import "./globals.scss";
+import Header from "./_components/_sections/header/Header";
+import Footer from "./_components/_sections/footer/Footer";
 import TanstackProvider from "./_providers/TanstackProvider";
 
-const tajwal = Tajawal({ subsets: ["latin"], weight: "500" });
+const tajwal = Tajawal({ subsets: ["arabic"], weight: "500" });
 
 export const metadata: Metadata = {
   title: "Create Next App",

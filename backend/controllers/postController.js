@@ -10,6 +10,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
     title: req.body.title,
     summary: req.body.summary,
     content: req.body.content,
+    activityType: req.body.activityType,
     images,
   });
 
@@ -27,8 +28,7 @@ exports.getPaginated = catchAsync(async (req, res, next) => {
   const limit = req.query.limit * 1 || 9;
   const skip = (page - 1) * limit;
   
-  const counter = await PostCounter.findOne();
-  const totalPosts = counter ? counter.count : 0;
+  const totalPosts = await Post.countDocuments();
   const pageCount = Math.ceil(totalPosts / limit)
 
   const activityList = await Post.find({})

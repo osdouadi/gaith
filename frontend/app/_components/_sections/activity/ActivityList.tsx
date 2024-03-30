@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import Card from "../../_ui/Card";
 import { Activity } from "./ActivitySection";
 
 interface ActivityListProps {
@@ -13,6 +13,7 @@ function ActivityList({ data }: ActivityListProps) {
       {data?.map((activity) => (
         <Card
           key={activity._id}
+          activityType={activity.activityType}
           title={activity.title}
           summary={activity.summary}
           image={activity.images[0]}

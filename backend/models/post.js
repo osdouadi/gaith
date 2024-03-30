@@ -4,15 +4,20 @@ const postSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, "A post must have a title"],
+      required: [true, "Title field is required"],
     },
     summary: {
       type: String,
-      required: [true, "A post must have a summary"],
+      required: [true, "Summary field is required"],
     },
     content: {
       type: String,
-      required: [true, "A post must have a content"],
+      required: [true, "Content field is required"],
+    },
+    activityType: {
+      type: String,
+      required: [true, "Activity field is required"]
+    
     },
     slug: String,
     images: [String],

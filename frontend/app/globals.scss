@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&family=Reem+Kufi+Ink&family=Reem+Kufi:wght@400..700&family=Rubik:wght@300;400;500;600;700&display=swap");
+$base-font-size: 1.14rem;
+$brand-color-red: #e74645;
+$brand-color-red-hover: #e21d1d;
+$brand-color-white: #fefefe;
+$brand-bg-primary: #effeff;
+$brand-color-yellow: #fdfa66;
+$rounded-full: 50px;
+$transition: 0.3s;
+
+body {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  direction: rtl;
+  background-color: $brand-color-white;
+}
+
+.logo {
+  font-family: "Reem Kufi", sans-serif;
+  color: $brand-color-white;
+  font-weight: 400;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: 10% 2fr 1fr;
+
+  .action-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    align-items: center;
+
+    a:first-child {
+      &:hover {
+        color: $brand-color-yellow;
+      }
+    }
+    a:nth-child(2) {
+      background-color: $brand-color-red;
+      padding: 0.5rem 1.6rem;
+      border-radius: $rounded-full;
+      transition: $transition;
+      &:hover {
+        background-color: $brand-color-red-hover;
+      }
+    }
+  }
+
+  .menu-link {
+    font-size: $base-font-size;
+    color: $brand-color-white;
+    transition: $transition;
+  }
+
+  .list-items {
+    .menu-link {
+      &:hover {
+        color: $brand-color-yellow;
+      }
+    }
+  }
+}
+
+.hero {
+  .intro-image {
+    &::after,
+    &::before {
+      position: absolute;
+      content: "";
+      width: 26%;
+      height: 0.3rem;
+      bottom: -0.7rem;
+      right: 50%;
+      border-radius: 50px;
+      transform: translateX(50%);
+      background-color: $brand-color-white;
+    }
+    &::before {
+      width: 15%;
+      bottom: -1.5rem;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { usePagination, DOTS } from "../_hooks/usePagination";
+import { usePagination, DOTS } from "../../_hooks/usePagination";
 
 function Pagination({
   onPageChange,
@@ -69,7 +69,7 @@ function Pagination({
               type="button"
               className={`w-full px-4 py-2 text-base border ${
                 pageNumber === currentPage
-                  ? "text-white bg-blue-500"
+                  ? "text-white bg-primary"
                   : "text-gray-600 bg-white hover:bg-gray-100"
               }`}
               onClick={() => onPageChange(pageNumber as number)}

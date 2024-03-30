@@ -2,13 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import SectionTitle from "./SectionTitle";
+import SectionTitle from "../../_ui/SectionTitle";
 import ActivityList from "./ActivityList";
-import PostAPIs from "../_api/PostAPIs";
-import Pagination from "./Pagination";
+import PostAPIs from "../../../_api/PostAPIs";
+import Pagination from "../../_ui/Pagination";
 
 export interface Activity {
   _id: string;
+  activityType: string;
   title: string;
   summary: string;
   content: string;
@@ -23,7 +24,7 @@ export interface Activity {
 let isInitialFetch = true;
 function Activities() {
   const [page, setPage] = useState(1);
-  const limit = 9
+  const limit = 9;
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["Activities"],
@@ -32,7 +33,6 @@ function Activities() {
       return data;
     },
   });
-
 
   useEffect(() => {
     if (isInitialFetch) {
@@ -44,7 +44,7 @@ function Activities() {
 
   return (
     <section>
-      <SectionTitle title="نشاطات النادي" />
+        <SectionTitle title="نشاطات و فعاليات النادي" />
       <div className="container">
         <ActivityList data={data?.activityList} />
         <Pagination
