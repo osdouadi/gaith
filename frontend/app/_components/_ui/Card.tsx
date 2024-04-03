@@ -10,7 +10,6 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ activityType, title, summary, image }) => {
-  console.log(image);
   return (
     <div className=" shadow-xl overflow-hidden">
       <Image

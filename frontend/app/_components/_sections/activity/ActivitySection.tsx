@@ -22,6 +22,7 @@ export interface Activity {
 }
 
 let isInitialFetch = true;
+
 function Activities() {
   const [page, setPage] = useState(1);
   const limit = 9;
@@ -44,7 +45,7 @@ function Activities() {
 
   return (
     <section>
-        <SectionTitle title="نشاطات و فعاليات النادي" />
+      <SectionTitle title="نشاطات و فعاليات النادي" textColor="text-primary" />
       <div className="container">
         <ActivityList data={data?.activityList} />
         <Pagination

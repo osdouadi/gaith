@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className="header w-full bg-primary py-6 px-12">
       <nav className="nav-menu w-full">
-        <Logo />
+        <Logo textColor="text-white" type="logo" />
         <ul className="flex items-center gap-10 list-items">
           {links.map((link, i) => (
             <Link key={i} href={link.href} className="menu-link">

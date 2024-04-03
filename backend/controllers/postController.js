@@ -37,7 +37,7 @@ exports.getPaginated = catchAsync(async (req, res, next) => {
     .populate("comments");
 
   res.status(200).json({
-    status: "success",
+    message: "success",
     activityList,
     page,
     totalPosts,

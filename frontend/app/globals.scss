@@ -18,9 +18,17 @@ body {
 
 .logo {
   font-family: "Reem Kufi", sans-serif;
-  color: $brand-color-white;
   font-weight: 400;
   font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cardLogo {
+  font-family: "Reem Kufi", sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -87,3 +95,60 @@ body {
     }
   }
 }
+
+.copy-right::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $brand-color-white;
+  width: 50%;
+  height: 0.04rem;
+}
+.text-decoration-style {
+  position: relative;
+}
+.text-decoration-style::after {
+  position: absolute;
+  content: "";
+  bottom: -0.2rem;
+  right: 0;
+  background-color: $brand-color-yellow;
+  width: 100%;
+  height: 0.1rem;
+  border-radius: 4px;
+}
+
+.member-speciality {
+  background-color: $brand-color-red;
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 50px;
+}
+
+.btn-lg {
+  font-size: 1.3rem;
+  padding: 10px 12px;
+}
+
+.btn-normal {
+  font-size: 1rem;
+  padding: 10px 12px;
+}
+
+.btn-white {
+  background-color: $brand-color-white;
+  color: #121212;
+}
+
+.btn-yellow {
+  background-color: $brand-color-yellow;
+  color: #121212;
+}
+
+.btn-red {
+  background-color: $brand-color-red;
+  color: $brand-color-white;
+}
+

@@ -1,3 +1,22 @@
+import {
+  BellRingIcon,
+  HomeIcon,
+  ListTodoIcon,
+  Mail,
+  MapPin,
+  Phone,
+  University,
+} from "lucide-react";
+import { FaWhatsapp, FaXTwitter } from "react-icons/fa6";
+import { LuFacebook, LuInstagram } from "react-icons/lu";
+import { RiTiktokLine } from "react-icons/ri";
+import {
+  LiaGithub,
+  LiaLinkSolid,
+  LiaLinkedinIn,
+  LiaWhatsapp,
+} from "react-icons/lia";
+
 type LinkItem = {
   href: string;
   title: string;
@@ -49,4 +68,90 @@ const contentBoxItems: BoxItems[] = [
   },
 ];
 
-export { links, contentBoxItems };
+const footerList: { icon: React.FC<any>; title: string }[] = [
+  {
+    icon: HomeIcon,
+    title: "الواجهة الرئيسية",
+  },
+  {
+    icon: ListTodoIcon,
+    title: "نشاطات النادي",
+  },
+  {
+    icon: BellRingIcon,
+    title: "الفعاليات و المناسبات القادمة",
+  },
+  {
+    icon: University,
+    title: "من نحن؟",
+  },
+  {
+    icon: Phone,
+    title: "تواصل معنا",
+  },
+];
+
+const contactInfo: { icon: React.FC<any>; title: string; value: string }[] = [
+  {
+    icon: MapPin,
+    title: "المقر:",
+    value: "جامعة زيان عاشور ولاية الجلفة",
+  },
+  {
+    icon: Mail,
+    title: "البريد الإلكتروني:",
+    value: "Gaith@info.com",
+  },
+  {
+    icon: Phone,
+    title: "رقم الهاتف:",
+    value: "0557958797",
+  },
+];
+
+const socialMedia: { icon: React.FC<any>; title: string }[] = [
+  {
+    icon: LuFacebook,
+    title: "فيسبوك",
+  },
+  {
+    icon: LuInstagram,
+    title: "إنستغرام",
+  },
+  {
+    icon: FaXTwitter,
+    title: "تويتر",
+  },
+  {
+    icon: FaWhatsapp,
+    title: "واتساب",
+  },
+  {
+    icon: RiTiktokLine,
+    title: "تيك توك",
+  },
+];
+
+const developerContact: { icon: React.FC<any>; href: string; color: string }[] =
+  [
+    { icon: LiaGithub, href: "#", color: "#2dba4e" },
+    { icon: LiaWhatsapp, href: "#", color: "#075e54" },
+    { icon: LiaLinkSolid, href: "#", color: "primary" },
+    { icon: LiaLinkedinIn, href: "#", color: "#004182" },
+  ];
+
+const developmentTools: { title: string; tools: string[] }[] = [
+  {title: "Backend:", tools: ["JavaScript", "Node.js", "Express.js", "JWT"]},
+  {title: "Database:", tools: ["MongoDB", "Mongoose"]},
+  {title: "Frontend:", tools: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Sass", "MUI"]}
+]
+
+export {
+  links,
+  contentBoxItems,
+  footerList,
+  contactInfo,
+  socialMedia,
+  developerContact,
+  developmentTools
+};

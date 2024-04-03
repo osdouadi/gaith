@@ -9,11 +9,10 @@ import path from "path";
 
 const nextConfig = {
   images: {
-    domains: ["*"],
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "localhost",
+        hostname: "*",
       },
     ],
   },

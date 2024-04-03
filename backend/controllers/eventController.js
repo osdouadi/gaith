@@ -3,13 +3,20 @@ const catchAsync = require("../utils/catchAsync");
 
 // Get paginated events
 exports.getPaginatedEvents = catchAsync(async (req, res, next) => {
-  const events = await Event.find();
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 1;
+  const skip = (page - 1) * limit;
+  const totalEvents = await Event.countDocuments();
+  const pageCount = Math.ceil(totalEvents / limit);
+
+  const eventsList = await Event.find({}).skip(skip).limit(limit);
 
   res.status(200).json({
     message: "success",
-    data: {
-      events,
-    },
+    eventsList,
+    page,
+    totalEvents,
+    pageCount,
   });
 });
 
@@ -37,13 +44,16 @@ exports.createEvent = catchAsync(async (req, res, next) => {
     return res.status(400).json({ error: "No image uploaded" });
   }
 
-  const image = req.resizedImagePath;
+  const cover = req.resizedImagePath;
 
   const newEvent = await Event.create({
+    cover,
+    type: req.body.type,
     title: req.body.title,
-    details: req.body.details,
     date: req.body.date,
-    image: image,
+    plannerType: req.body.plannerType,
+    planner: req.body.planner,
+    topics: req.body.topics,
   });
 
   res.status(201).json({

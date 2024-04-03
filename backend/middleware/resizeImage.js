@@ -16,12 +16,15 @@ const resizeImage = (title, width, height, pathName) => {
 
     const randomChars = Math.random().toString(36).substring(2, 7);
     const fileName = `${title}-${randomChars}-${Date.now()}-image.jpg`;
-    const filePath = path.join(`img/${pathName}`, fileName);
+    const filePath = path.join(`public/img/${pathName}`, fileName);
+
+    const imagePathInDB = `/img/${pathName}/${fileName}`;
+
     fs.writeFile(filePath, resizedImage, (err) => {
       if (err) {
         return next(new AppError("Error saving resized image", 500));
       }
-      req.resizedImagePath = filePath;
+      req.resizedImagePath = imagePathInDB;
       next();
     });
   });
