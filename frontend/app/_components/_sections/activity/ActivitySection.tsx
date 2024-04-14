@@ -43,10 +43,11 @@ function Activities() {
     refetch();
   }, [refetch, page]);
 
+
   return (
     <section>
       <SectionTitle title="نشاطات و فعاليات النادي" textColor="text-primary" />
-      <div className="container">
+      <div className="flex flex-col items-center">
         <ActivityList data={data?.activityList} />
         <Pagination
           onPageChange={(page) => setPage(page)}

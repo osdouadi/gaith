@@ -8,7 +8,7 @@ interface SolganProps {
 function Slogan({ fontSize }: SolganProps) {
   return (
     <span
-      className={`slogan ${fontSize} text-yellow-300 font-semibold flex gap-2`}
+      className={`slogan flex gap-2 ${fontSize} text-yellow-300 font-semibold`}
     >
       <RiDoubleQuotesR className="self-start" />
       الطالب كالغيث اينما حل نفع

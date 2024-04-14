@@ -1,5 +1,6 @@
 const express = require("express");
 const postController = require("./../controllers/postController");
+const authController = require("./../controllers/authController");
 const { singleUpload, arrayUpload } = require("../middleware/upload");
 const resizeImage = require("../middleware/resizeImage");
 const resizeMultiple = require("../middleware/resizeMultiple");
@@ -25,5 +26,6 @@ router.put(
   resizeMultiple("images", 2000, 1333, "posts"),
   postController.updatePost
 );
+router.post("/:id/toggle-like", postController.toggleLike);
 router.delete("/:id", postController.deletePost);
 module.exports = router;

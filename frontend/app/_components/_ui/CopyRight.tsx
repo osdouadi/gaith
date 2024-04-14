@@ -1,8 +1,8 @@
 import React from "react";
 
 function CopyRight() {
-    const year = new Date().getFullYear();
-    
+  const year = new Date().getFullYear();
+
   return (
     <div className="copy-right text-center mt-16 pt-1 relative">
       <span className="text-white">

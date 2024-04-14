@@ -16,6 +16,22 @@ import {
   LiaLinkedinIn,
   LiaWhatsapp,
 } from "react-icons/lia";
+import {
+  AreaChart,
+  CalendarCheck,
+  CircleDollarSign,
+  Crown,
+  FilePen,
+  Home,
+  LayoutGrid,
+  LifeBuoy,
+  PaintRoller,
+  Settings,
+  ShoppingCart,
+  Store,
+  Users,
+  MessagesSquare
+} from "lucide-react";
 
 type LinkItem = {
   href: string;
@@ -34,9 +50,9 @@ type BoxItems = {
 const links: LinkItem[] = [
   { href: "#", title: "الرئيسية" },
   { href: "#", title: "نشاطات النادي" },
+  { href: "#", title: "الفعاليات" },
   { href: "#", title: "تواصل معنا" },
-  { href: "#", title: "من نحن" },
-  { href: "#", title: "المدونة" },
+  { href: "#", title: "من نحن" }
 ];
 
 const contentBoxItems: BoxItems[] = [
@@ -141,10 +157,21 @@ const developerContact: { icon: React.FC<any>; href: string; color: string }[] =
   ];
 
 const developmentTools: { title: string; tools: string[] }[] = [
-  {title: "Backend:", tools: ["JavaScript", "Node.js", "Express.js", "JWT"]},
-  {title: "Database:", tools: ["MongoDB", "Mongoose"]},
-  {title: "Frontend:", tools: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Sass", "MUI"]}
-]
+  { title: "Backend:", tools: ["JavaScript", "Node.js", "Express.js", "JWT"] },
+  { title: "Database:", tools: ["MongoDB", "Mongoose"] },
+  {
+    title: "Frontend:",
+    tools: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Sass", "MUI"],
+  },
+];
+
+const menuData: { icon: React.FC<any>; title: string; isActive?: boolean }[] = [
+  { icon: Home, title: "الرئيسية", isActive: true },
+  { icon: ListTodoIcon, title: "النشاطات", isActive: false },
+  { icon: BellRingIcon, title: "الفعاليات", isActive: false },
+  { icon: Users, title: "الأعضاء", isActive: false },
+  { icon: MessagesSquare, title: "رسائل التواصل", isActive: false }
+];
 
 export {
   links,
@@ -153,5 +180,6 @@ export {
   contactInfo,
   socialMedia,
   developerContact,
-  developmentTools
+  developmentTools,
+  menuData,
 };

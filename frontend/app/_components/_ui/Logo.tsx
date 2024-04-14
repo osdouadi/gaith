@@ -1,11 +1,13 @@
+import Link from "next/link";
 import React from "react";
 
-function Logo({ textColor, type }: { textColor: string; type: string}) {
+function Logo() {
   return (
-    <div className={`${type} ${textColor}`}>
-      <span>نادي</span>
-      <span className="-mt-5">غيث</span>
-    </div>
+    <Link href="https://flowbite.com" className="flex items-center">
+      <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+        Flowbite
+      </span>
+    </Link>
   );
 }
 

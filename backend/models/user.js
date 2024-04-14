@@ -3,9 +3,21 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  firstName: {
     type: String,
-    required: [true, "Name field is required!"],
+    required: [true, "FirstName field is required!"],
+  },
+  lastName: {
+    type: String,
+    required: [true, "LastName field is required!"],
+  },
+  university: {
+    type: String,
+    required: [true, "University field is required!"],
+  },
+  speciality: {
+    type: String,
+    required: [true, "Speciality field is required!"],
   },
   email: {
     type: String,
@@ -14,9 +26,9 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, "Please insert a valid email"],
   },
-  photo: {
+  phone: {
     type: String,
-    default: "avatar.png",
+    required: [true, "Phone field is required!"],
   },
   role: {
     type: String,
@@ -44,6 +56,14 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+});
+
+userSchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
+
+userSchema.set("toJSON", {
+  virtuals: true,
 });
 
 userSchema.pre("save", async function (next) {

@@ -16,8 +16,7 @@ const postSchema = new mongoose.Schema(
     },
     activityType: {
       type: String,
-      required: [true, "Activity field is required"]
-    
+      required: [true, "Activity field is required"],
     },
     slug: String,
     images: [String],
@@ -27,23 +26,23 @@ const postSchema = new mongoose.Schema(
         ref: "Comment",
       },
     ],
-    reactions: [
+    likes: [
       {
-        type: String,
-        enum: ["like", "love", "flower", "sad"],
-        userId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-        createdAt: {
-          type: Date,
-          default: Date.now,
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Like",
       },
     ],
   },
   { timestamps: true }
 );
+
+postSchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
+
+postSchema.set("toJSON", {
+  virtuals: true,
+});
 
 const postCounterSchema = new mongoose.Schema({
   count: {

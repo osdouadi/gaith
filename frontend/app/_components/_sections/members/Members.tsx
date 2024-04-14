@@ -10,8 +10,8 @@ function Members() {
   return (
     <section className="bg-primary py-12 px-6">
       <SectionTitle title="أعضاء نادي غيث" textColor="text-white" />
-      <div className="container flex items-center justify-between">
-        <div className="w-1/2 flex flex-col pl-4">
+      <div className="container flex flex-col-reverse lg:flex-row xl:flex-row items-center justify-between">
+        <div className="lg:w-1/2 xl:w-1/2 flex flex-col pl-4">
           <div className="text-white text-4xl font-bold pb-5">
             <h3>فريقنا</h3>
           </div>
@@ -31,7 +31,7 @@ function Members() {
             </Button>
           </div>
         </div>
-        <div className="flex w-1/2 gap-6">
+        <div className="flex lg:w-1/2 xl:w-1/2 gap-6">
           <motion.div
             className="flex flex-col w-full gap-6"
             initial={{ y: 20 }}

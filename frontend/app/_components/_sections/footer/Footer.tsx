@@ -12,7 +12,7 @@ export default function Footer() {
     <>
       {/*Developer /> */}
       <section className="bg-primary w-full py-10 px-6">
-        <div className="flex">
+        <div className="flex flex-col-reverse lg:flex-row xl:flex-row">
           <FooterInfo />
           <FooterContact />
           <FooterList />

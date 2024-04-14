@@ -33,8 +33,23 @@ const eventSchema = new mongoose.Schema({
       },
       message: "At least one topic is required",
     },
+    validate: {
+      validator: function (arr) {
+        return arr.length <= 4;
+      },
+      message: "Cannot add more than 4 topics",
+    },
   },
 });
+
+eventSchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
+
+eventSchema.set("toJSON", {
+  virtuals: true,
+});
+
 
 const Event = mongoose.model("Event", eventSchema);
 

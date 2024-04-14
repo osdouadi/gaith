@@ -1,4 +1,6 @@
+const mongoose = require("mongoose");
 const Comment = require("../models/comment");
+const Like = require("../models/like");
 const catchAsync = require("../utils/catchAsync");
 const { Post, PostCounter } = require("./../models/post");
 
@@ -27,9 +29,9 @@ exports.getPaginated = catchAsync(async (req, res, next) => {
   const page = req.query.page * 1 || 1;
   const limit = req.query.limit * 1 || 9;
   const skip = (page - 1) * limit;
-  
+
   const totalPosts = await Post.countDocuments();
-  const pageCount = Math.ceil(totalPosts / limit)
+  const pageCount = Math.ceil(totalPosts / limit);
 
   const activityList = await Post.find({})
     .skip(skip)
@@ -61,9 +63,7 @@ exports.getPostById = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    data: {
-      post,
-    },
+    post,
   });
 });
 
@@ -89,6 +89,93 @@ exports.addComment = catchAsync(async (req, res, next) => {
     success: true,
     post,
   });
+});
+
+exports.toggleLike = catchAsync(async (req, res, next) => {
+  let postId = req.params.id;
+
+  if (!postId) {
+    return res.status(400).send({
+      message: "Invalid post id",
+      data: {},
+    });
+  }
+
+  Post.findOne({ _id: postId })
+    .then((post) => {
+      if (!post) {
+        return res.status(400).send({
+          message: "No post found",
+          data: {},
+        });
+      } else {
+        let current_user = req.body.userId;
+
+        Like.findOne({
+          postId: postId,
+          userId: current_user,
+        })
+          .then(async (postLike) => {
+            try {
+              if (!postLike) {
+                let postLikeDoc = new Like({
+                  postId: postId,
+                  userId: current_user,
+                });
+
+                let likeData = await postLikeDoc.save();
+                Post.updateOne(
+                  {
+                    _id: postId,
+                  },
+                  {
+                    $push: { likes: likeData },
+                  }
+                );
+                return res.status(200).send({
+                  message: "Like successfully added",
+                  data: {},
+                });
+              } else {
+                await Like.deleteOne({
+                  _id: postLike._id,
+                });
+
+                await Post.updateOne(
+                  {
+                    _id: postLike.postId,
+                  },
+                  {
+                    $pull: { likes: postLike._id },
+                  }
+                );
+
+                return res.status(200).send({
+                  message: "Like successfully removed",
+                  data: {},
+                });
+              }
+            } catch (err) {
+              return res.status(400).send({
+                message: err.message,
+                data: err,
+              });
+            }
+          })
+          .catch((err) => {
+            return res.status(400).send({
+              message: err.message,
+              data: err,
+            });
+          });
+      }
+    })
+    .catch((err) => {
+      return res.status(400).send({
+        message: err.message,
+        data: err,
+      });
+    });
 });
 
 // Update a post

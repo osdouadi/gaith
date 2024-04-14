@@ -5,7 +5,7 @@ import { contentBoxItems } from "../../../_lib/data";
 export default function About() {
   return (
     <section>
-      <div className="flex items-start w-full p-6 ">
+      <div className="flex items-start w-full p-6 flex-col lg:flex-row xl:flex-row ">
         {contentBoxItems.map((item, index) => (
           <ContentBox
             key={index}

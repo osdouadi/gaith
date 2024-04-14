@@ -1,10 +1,10 @@
-import React from 'react'
-import Button from './Button';
-import { footerList } from '../../_lib/data';
+import React from "react";
+import Button from "./Button";
+import { footerList } from "../../_lib/data";
 
 function FooterList() {
   return (
-    <div className="flex-1">
+    <div className="flex-1 text-base mb-5 lg:mb-0 xl:mb-0">
       <div className="flex flex-col ">
         <ul>
           {footerList.map((item, index) => (
@@ -27,4 +27,4 @@ function FooterList() {
   );
 }
 
-export default FooterList
+export default FooterList;

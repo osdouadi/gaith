@@ -8,7 +8,7 @@ interface ActivityListProps {
 
 function ActivityList({ data }: ActivityListProps) {
   return (
-    <div className="container px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-5">
+    <div className="px-6 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-5 mx-auto">
       {data?.map((activity) => (
         <Card
           key={activity._id}
@@ -16,6 +16,7 @@ function ActivityList({ data }: ActivityListProps) {
           title={activity.title}
           summary={activity.summary}
           image={activity.images[0]}
+          id={activity._id}
         />
       ))}
     </div>

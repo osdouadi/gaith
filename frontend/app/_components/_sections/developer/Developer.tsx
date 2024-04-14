@@ -7,7 +7,7 @@ function Developer() {
   return (
     <div className="bg-gradient-to-l from-[#c63434]/95 via-[#bb3737] to-[#a72b2b] shadow-md w-1/2 mx-auto rounded-t-xl py-6 px-4 flex items-start ">
       <div className="w-1/2">
-     <DeveloperInfo />
+        <DeveloperInfo />
       </div>
       <div className="w-1/2 text-white">
         <div>

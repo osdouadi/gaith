@@ -1,3 +1,4 @@
+const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
@@ -15,8 +16,9 @@ exports.createSendToken = (user, statusCode, req, res) => {
 
   res.cookie("jwt", token, {
     expires: new Date(
-      Date.now() + process.env.JWT_EXPIRES_IN * 24 * 60 * 60 * 1000
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
+    
     httpOnly: true,
     secure: req.secure || req.headers["x-forwarded-proto"] === "https",
   });
@@ -31,6 +33,8 @@ exports.createSendToken = (user, statusCode, req, res) => {
   });
 };
 
+
+
 // Login services
 exports.verifyCredentialsAdd = async (email, password, next) => {
   // 1) => Check if user iserted his email and password
@@ -42,14 +46,14 @@ exports.verifyCredentialsAdd = async (email, password, next) => {
 // Protect routes
 
 // Check if token exists
-const isThereToken = (next) => {
+const isThereToken = (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
-  } else if (res.cookies.jwt) {
+  } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
 
@@ -73,15 +77,40 @@ const checkUserExists = async (decodedToken, currentUser, next) => {
 };
 
 exports.protect = catchAsync(async (req, res, next) => {
-  // Verify token
-  const decodedToken = await promisify(jwt.verify)(
-    token,
-    process.env.JWT_SECRET
-  );
-  const currentUser = await User.findById(decodedToken.id);
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
 
-  isThereToken(next);
-  checkUserExists(decodedToken, currentUser, next);
+  if (!token) {
+    return next(
+      new AppError("You are not logged in! Please log in to get access.", 401)
+    );
+  }
+
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+
+  const currentUser = await User.findById(decoded.id);
+  if (!currentUser) {
+    return next(
+      new AppError(
+        "The user belonging to this token does no longer exist.",
+        401
+      )
+    );
+  }
+
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return next(
+      new AppError("User recently changed password! Please log in again.", 401)
+    );
+  }
 
   // Grant access to the protected route
   req.user = currentUser;

@@ -1,12 +1,12 @@
-import React from 'react'
-import DecoratedWord from './DecoratedWord';
-import { developerContact } from '../../_lib/data';
-import Button from './Button';
-import Link from 'next/link';
+import React from "react";
+import DecoratedWord from "./DecoratedWord";
+import { developerContact } from "../../_lib/data";
+import Button from "./Button";
+import Link from "next/link";
 
 function DeveloperInfo() {
-    return (
-      <>
+  return (
+    <>
       <h3 className="text-xl text-white pb-3">
         نبذة عن <DecoratedWord textColor="yellow-300">المطور</DecoratedWord>
       </h3>
@@ -35,4 +35,4 @@ function DeveloperInfo() {
   );
 }
 
-export default DeveloperInfo
+export default DeveloperInfo;
